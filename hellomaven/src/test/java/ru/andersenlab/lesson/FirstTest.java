@@ -1,8 +1,8 @@
 package ru.andersenlab.lesson;
-
-import org.junit.AfterClass;
+//import org.testng.annotations.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.AfterClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +24,7 @@ public class FirstTest {
    private static  WebElement btn_restration;
    private static WebElement login_fild;
    private  static WebElement pass_field;
+
     @BeforeClass
     public static void setup()
     {
@@ -38,7 +39,9 @@ public class FirstTest {
         email_filed = driver.findElement(By.xpath("//*[contains(@id, 'signupform-email')]")); // находим поле почты
         btn_restration = driver.findElement(By.xpath("//*[contains(@id, 'signup_btn')]")); // находим кнопку регистрации по id
     }
-@Test
+
+    @Test
+
 public void check_field() // при открытие страницы текст-боксы должны быть пустые
 {
     Assert.assertEquals( "", email_filed.getAttribute("value"));
@@ -47,30 +50,35 @@ public void check_field() // при открытие страницы текст
 
 }
 
+
+
+
+
     @Test
     public void enter_email ()
     {
+
        //email_filed = driver.findElement(By.xpath("//*[contains(@id, 'signupform-email')]"));
         String email = "Test@ya.ru";
        email_filed.sendKeys(email);
-              Assert.assertEquals( email, email_filed.getAttribute("value"));
+       Assert.assertEquals( email, email_filed.getAttribute("value"));
 
     }
 
     @Test
     public void try_regisrtration_whith_out_login()
     {
+
         String web_before = driver.getCurrentUrl().toString();
      btn_restration.click();
      String web_after = driver.getCurrentUrl().toString();
-
     Assert.assertEquals(  web_before, web_after); // проверяю , что мы остались на этой странице . если остались прошли
     }
     @Test
     public void enter_login ()
     {
         String login = "test523";
-        login_fild.sendKeys("");
+        login_fild.sendKeys(login);
         Assert.assertEquals( login,  login_fild.getAttribute("value"));
 
     }
@@ -88,8 +96,11 @@ public void check_field() // при открытие страницы текст
     @AfterClass
     public static void finsh_test()
     {
+
         driver.quit();
     }
+
+
 
 
 
