@@ -75,6 +75,14 @@ public void check_field() // при открытие страницы текст
 
     }
 
+    @Test
+    public  void check_title_page()
+    {
+        String title_page  = "Регистрация — @дневники: асоциальная сеть";
+        Assert.assertEquals( title_page, driver.getTitle() );
+
+    }
+
 
 
     @AfterClass
